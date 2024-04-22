@@ -17,8 +17,8 @@ export async function register(req: Request, res: Response) {
 
 export async function authenticate(req: Request, res: Response) {
     try {
-        const { username, password } = req.body;
-        const token = await AuthService.authenticate(username, password);
+        const { email, password } = req.body;
+        const token = await AuthService.authenticate(email, password);
         res.status(200).json({ message: "Authentication successful", token });
     } catch (error: unknown) {
         if (error instanceof Error) {

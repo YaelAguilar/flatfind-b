@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ io.on('connection', (socket) => {
     console.log('User disconnected');
   });
 });
+
+app.use('/api/auth', authRoutes);
 
 httpServer.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
